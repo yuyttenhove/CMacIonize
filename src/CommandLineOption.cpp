@@ -136,7 +136,11 @@ void CommandLineOption::print_usage(std::ostream &stream) const {
  */
 void CommandLineOption::print_description(std::ostream &stream) const {
 
-  stream << "--" << _name << " (-" << _abbreviation << ")\n";
+  if (_abbreviation == 0) {
+    stream << "--" << _name << " (-)\n";
+  } else {
+    stream << "--" << _name << " (-" << _abbreviation << ")\n";
+  }
   stream << _description << "\n";
   stream << get_argument_description(_argument);
   std::string default_value_description =
